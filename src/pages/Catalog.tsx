@@ -50,23 +50,84 @@ export default function Catalog() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
         >
-          <h2 className="text-xl font-semibold text-foreground mb-4">Catálogo de Produtos</h2>
+          <h2 className="text-xl font-semibold text-foreground mb-6">Catálogo de Produtos</h2>
           
-          <div className="space-y-3">
-            {products.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, duration: 0.3 }}
-              >
-                <ProductCard
-                  product={product}
-                  quantity={quantities[product.id] || 0}
-                  onQuantityChange={handleQuantityChange}
-                />
-              </motion.div>
-            ))}
+          {/* Verduras e Legumes */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+              <span className="text-2xl">🥬</span>
+              Verduras e Legumes
+            </h3>
+            <div className="space-y-3">
+              {products
+                .filter(p => p.category === 'vegetables')
+                .map((product, index) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.03, duration: 0.3 }}
+                  >
+                    <ProductCard
+                      product={product}
+                      quantity={quantities[product.id] || 0}
+                      onQuantityChange={handleQuantityChange}
+                    />
+                  </motion.div>
+                ))}
+            </div>
+          </div>
+
+          {/* Frutas */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+              <span className="text-2xl">🍎</span>
+              Frutas
+            </h3>
+            <div className="space-y-3">
+              {products
+                .filter(p => p.category === 'fruits')
+                .map((product, index) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.03, duration: 0.3 }}
+                  >
+                    <ProductCard
+                      product={product}
+                      quantity={quantities[product.id] || 0}
+                      onQuantityChange={handleQuantityChange}
+                    />
+                  </motion.div>
+                ))}
+            </div>
+          </div>
+
+          {/* Ervas e Temperos */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+              <span className="text-2xl">🌿</span>
+              Ervas e Temperos
+            </h3>
+            <div className="space-y-3">
+              {products
+                .filter(p => p.category === 'herbs')
+                .map((product, index) => (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.03, duration: 0.3 }}
+                  >
+                    <ProductCard
+                      product={product}
+                      quantity={quantities[product.id] || 0}
+                      onQuantityChange={handleQuantityChange}
+                    />
+                  </motion.div>
+                ))}
+            </div>
           </div>
         </motion.div>
       </main>
