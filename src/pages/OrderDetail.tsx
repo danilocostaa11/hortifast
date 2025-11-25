@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Leaf, Printer } from 'lucide-react';
+import { ArrowLeft, Leaf, Printer, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { mockOrders } from '@/data/mockData';
 import { toast } from 'sonner';
+import { openWhatsApp, generateOrderShareMessage } from '@/lib/utils';
 
 const statusLabels = {
   new: { label: 'Novo', variant: 'default' as const },
@@ -54,6 +55,12 @@ export default function OrderDetail() {
     toast.success('Abrindo impressão...');
   };
 
+  const handleShareWhatsApp = () => {
+    const message = generateOrderShareMessage(order.id, order.customerName, order.items.length);
+    openWhatsApp(message);
+    toast.success('Abrindo WhatsApp...');
+  };
+
   return (
     <div className="min-h-screen bg-background pb-8">
       {/* Header */}
@@ -75,10 +82,16 @@ export default function OrderDetail() {
               </div>
             </div>
             
-            <Button onClick={handlePrint} variant="outline" className="gap-2 print:hidden">
-              <Printer className="h-4 w-4" />
-              Imprimir
-            </Button>
+            <div className="flex items-center gap-2 print:hidden">
+              <Button onClick={handleShareWhatsApp} variant="outline" className="gap-2" title="Compartilhar via WhatsApp">
+                <MessageCircle className="h-4 w-4 text-green-600" />
+                WhatsApp
+              </Button>
+              <Button onClick={handlePrint} variant="outline" className="gap-2">
+                <Printer className="h-4 w-4" />
+                Imprimir
+              </Button>
+            </div>
           </div>
         </div>
       </header>

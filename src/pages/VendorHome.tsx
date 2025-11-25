@@ -100,6 +100,14 @@ export default function VendorHome() {
           >
             Ver Catálogo de Exemplo
           </Button>
+          <Button
+            onClick={() => navigate('/instructions')}
+            variant="ghost"
+            size="lg"
+            className="h-14 px-8 text-base font-semibold"
+          >
+            Como Usar
+          </Button>
         </motion.div>
 
         {/* Footer Note */}
