@@ -1,14 +1,15 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Leaf, Search, X, MessageCircle } from 'lucide-react';
+import { Leaf, Search, X, MessageCircle, Loader } from 'lucide-react';
 import { ProductCard } from '@/components/ProductCard';
 import { CartBadge } from '@/components/CartBadge';
-import { products } from '@/data/mockData';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { openWhatsApp, generateCatalogShareMessage } from '@/lib/utils';
+import { getProducts, getVendor } from '@/lib/api';
+import { Product, Vendor } from '@/lib/types';
 
 export default function Catalog() {
   const { vendorId } = useParams();
@@ -18,6 +19,42 @@ export default function Catalog() {
   const [activeCategories, setActiveCategories] = useState<Set<string>>(
     new Set(['vegetables', 'fruits', 'herbs'])
   );
+  const [products, setProducts] = useState<Product[]>([]);
+  const [vendor, setVendor] = useState<Vendor | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch products and vendor on mount
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Fetch vendor data
+        if (vendorId) {
+          const vendorData = await getVendor(vendorId);
+          if (!vendorData) {
+            setError('Vendedor não encontrado');
+            setLoading(false);
+            return;
+          }
+          setVendor(vendorData);
+        }
+
+        // Fetch products
+        const productsData = await getProducts(vendorId);
+        setProducts(productsData);
+      } catch (err) {
+        setError('Erro ao carregar produtos');
+        console.error('Fetch error:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, [vendorId]);
 
   const handleQuantityChange = (productId: string, newQuantity: number) => {
     setQuantities(prev => ({
@@ -74,7 +111,9 @@ export default function Catalog() {
               <Leaf className="h-5 w-5" />
             </div>
             <div>
-              <h1 className="font-semibold text-lg text-foreground">HortiFruti Express</h1>
+              <h1 className="font-semibold text-lg text-foreground">
+                {vendor?.name || 'HortiFruti Express'}
+              </h1>
               <p className="text-xs text-muted-foreground">Produtos frescos</p>
             </div>
           </div>
@@ -85,6 +124,7 @@ export default function Catalog() {
               size="icon"
               className="text-green-600 hover:text-green-700 hover:bg-green-100"
               title="Compartilhar via WhatsApp"
+              disabled={loading}
             >
               <MessageCircle className="h-5 w-5" />
             </Button>
@@ -161,7 +201,38 @@ export default function Catalog() {
 
       {/* Product List */}
       <main className="max-w-2xl mx-auto px-4 py-6">
-        {filteredProducts.length === 0 ? (
+        {/* Loading State */}
+        {loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+              className="inline-block"
+            >
+              <Loader className="h-8 w-8 text-primary" />
+            </motion.div>
+            <p className="text-muted-foreground mt-4">Carregando produtos...</p>
+          </motion.div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-12"
+          >
+            <p className="text-red-600 text-lg mb-4">{error}</p>
+            <Button onClick={() => navigate('/')}>Voltar ao Início</Button>
+          </motion.div>
+        )}
+
+        {/* Content State */}
+        {!loading && !error && filteredProducts.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
