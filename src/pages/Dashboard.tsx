@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Leaf, Share2, Filter } from 'lucide-react';
+import { Leaf, Share2, Filter, Loader } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { mockOrders } from '@/data/mockData';
 import { toast } from 'sonner';
+import { getOrders } from '@/lib/api';
+import { Order } from '@/lib/types';
+import { useAuth } from '@/context/AuthContext';
 
 const statusLabels = {
   new: { label: 'Novo', variant: 'default' as const },
@@ -16,11 +18,36 @@ const statusLabels = {
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const filteredOrders = statusFilter === 'all'
-    ? mockOrders
-    : mockOrders.filter(order => order.status === statusFilter);
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+      return;
+    }
+
+    // Fetch orders
+    async function fetchOrders() {
+      try {
+        setLoading(true);
+        setError(null);
+        const data = await getOrders(user.id);
+        setOrders(data);
+      } catch (err) {
+        setError('Erro ao carregar pedidos');
+        console.error('Fetch error:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchOrders();
+  }, [user, navigate]);
 
   const handleGenerateLink = () => {
     const link = `${window.location.origin}/catalog/vendor-demo`;
