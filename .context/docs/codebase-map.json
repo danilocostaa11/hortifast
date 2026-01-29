@@ -1,0 +1,1253 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-01-29T19:32:57.404Z",
+  "stack": {
+    "primaryLanguage": "typescript",
+    "languages": [
+      "javascript",
+      "typescript"
+    ],
+    "frameworks": [],
+    "buildTools": [
+      "vite"
+    ],
+    "testFrameworks": [],
+    "packageManager": "bun",
+    "isMonorepo": false,
+    "hasDocker": false,
+    "hasCI": false
+  },
+  "structure": {
+    "totalFiles": 99,
+    "topDirectories": [
+      {
+        "name": "bun.lockb",
+        "fileCount": 1
+      },
+      {
+        "name": "components.json",
+        "fileCount": 1
+      },
+      {
+        "name": "eslint.config.js",
+        "fileCount": 1
+      },
+      {
+        "name": "index.html",
+        "fileCount": 1
+      },
+      {
+        "name": "package-lock.json",
+        "fileCount": 1
+      },
+      {
+        "name": "package.json",
+        "fileCount": 1
+      },
+      {
+        "name": "postcss.config.js",
+        "fileCount": 1
+      },
+      {
+        "name": "public",
+        "fileCount": 5
+      },
+      {
+        "name": "README.md",
+        "fileCount": 1
+      },
+      {
+        "name": "scripts",
+        "fileCount": 2
+      },
+      {
+        "name": "SETUP_DEVELOPMENT.md",
+        "fileCount": 1
+      },
+      {
+        "name": "src",
+        "fileCount": 78
+      },
+      {
+        "name": "tailwind.config.ts",
+        "fileCount": 1
+      },
+      {
+        "name": "tsconfig.app.json",
+        "fileCount": 1
+      },
+      {
+        "name": "tsconfig.json",
+        "fileCount": 1
+      },
+      {
+        "name": "tsconfig.node.json",
+        "fileCount": 1
+      },
+      {
+        "name": "vite.config.ts",
+        "fileCount": 1
+      }
+    ],
+    "languageDistribution": [
+      {
+        "extension": ".tsx",
+        "count": 66
+      },
+      {
+        "extension": ".ts",
+        "count": 13
+      },
+      {
+        "extension": ".json",
+        "count": 7
+      },
+      {
+        "extension": ".js",
+        "count": 3
+      },
+      {
+        "extension": ".md",
+        "count": 2
+      },
+      {
+        "extension": ".css",
+        "count": 2
+      },
+      {
+        "extension": ".html",
+        "count": 1
+      },
+      {
+        "extension": ".lockb",
+        "count": 1
+      },
+      {
+        "extension": ".txt",
+        "count": 1
+      },
+      {
+        "extension": ".svg",
+        "count": 1
+      }
+    ]
+  },
+  "architecture": {
+    "layers": [
+      {
+        "name": "Repositories",
+        "description": "Data access and persistence",
+        "directories": [
+          "src/data"
+        ],
+        "symbolCount": 3,
+        "dependsOn": []
+      },
+      {
+        "name": "Utils",
+        "description": "Shared utilities and helpers",
+        "directories": [
+          "src/lib"
+        ],
+        "symbolCount": 11,
+        "dependsOn": []
+      },
+      {
+        "name": "Controllers",
+        "description": "Request handling and routing",
+        "directories": [
+          "src/lib"
+        ],
+        "symbolCount": 12,
+        "dependsOn": []
+      },
+      {
+        "name": "Services",
+        "description": "Business logic and orchestration",
+        "directories": [
+          "src/hooks"
+        ],
+        "symbolCount": 5,
+        "dependsOn": []
+      },
+      {
+        "name": "Components",
+        "description": "UI components and views",
+        "directories": [
+          "src/components/ui",
+          "src/pages",
+          "src/components"
+        ],
+        "symbolCount": 90,
+        "dependsOn": []
+      }
+    ],
+    "patterns": [],
+    "entryPoints": [
+      "src/main.tsx"
+    ]
+  },
+  "symbols": {
+    "classes": [],
+    "interfaces": [
+      {
+        "name": "AuthUser",
+        "kind": "interface",
+        "file": "src/lib/types.ts",
+        "line": 54,
+        "exported": true
+      },
+      {
+        "name": "BadgeProps",
+        "kind": "interface",
+        "file": "src/components/ui/badge.tsx",
+        "line": 23,
+        "exported": true
+      },
+      {
+        "name": "ButtonProps",
+        "kind": "interface",
+        "file": "src/components/ui/button.tsx",
+        "line": 33,
+        "exported": true
+      },
+      {
+        "name": "CartItem",
+        "kind": "interface",
+        "file": "src/lib/types.ts",
+        "line": 63,
+        "exported": true
+      },
+      {
+        "name": "Order",
+        "kind": "interface",
+        "file": "src/data/mockData.ts",
+        "line": 17,
+        "exported": true
+      },
+      {
+        "name": "Order",
+        "kind": "interface",
+        "file": "src/lib/types.ts",
+        "line": 27,
+        "exported": true
+      },
+      {
+        "name": "OrderItem",
+        "kind": "interface",
+        "file": "src/data/mockData.ts",
+        "line": 10,
+        "exported": true
+      },
+      {
+        "name": "OrderItem",
+        "kind": "interface",
+        "file": "src/lib/types.ts",
+        "line": 41,
+        "exported": true
+      },
+      {
+        "name": "Product",
+        "kind": "interface",
+        "file": "src/data/mockData.ts",
+        "line": 1,
+        "exported": true
+      },
+      {
+        "name": "Product",
+        "kind": "interface",
+        "file": "src/lib/types.ts",
+        "line": 13,
+        "exported": true
+      },
+      {
+        "name": "TextareaProps",
+        "kind": "interface",
+        "file": "src/components/ui/textarea.tsx",
+        "line": 5,
+        "exported": true
+      },
+      {
+        "name": "Vendor",
+        "kind": "interface",
+        "file": "src/lib/types.ts",
+        "line": 2,
+        "exported": true
+      },
+      {
+        "name": "AuthContextType",
+        "kind": "interface",
+        "file": "src/hooks/useAuth.ts",
+        "line": 5,
+        "exported": false
+      },
+      {
+        "name": "AuthContextType",
+        "kind": "interface",
+        "file": "src/hooks/useAuth.tsx",
+        "line": 5,
+        "exported": false
+      },
+      {
+        "name": "AuthProviderProps",
+        "kind": "interface",
+        "file": "src/hooks/useAuth.tsx",
+        "line": 17,
+        "exported": false
+      },
+      {
+        "name": "CartBadgeProps",
+        "kind": "interface",
+        "file": "src/components/CartBadge.tsx",
+        "line": 5,
+        "exported": false
+      },
+      {
+        "name": "CommandDialogProps",
+        "kind": "interface",
+        "file": "src/components/ui/command.tsx",
+        "line": 24,
+        "exported": false
+      },
+      {
+        "name": "NavLinkCompatProps",
+        "kind": "interface",
+        "file": "src/components/NavLink.tsx",
+        "line": 5,
+        "exported": false
+      },
+      {
+        "name": "OrderTrendProps",
+        "kind": "interface",
+        "file": "src/components/DashboardCharts.tsx",
+        "line": 5,
+        "exported": false
+      },
+      {
+        "name": "ProductCardProps",
+        "kind": "interface",
+        "file": "src/components/ProductCard.tsx",
+        "line": 6,
+        "exported": false
+      },
+      {
+        "name": "SheetContentProps",
+        "kind": "interface",
+        "file": "src/components/ui/sheet.tsx",
+        "line": 50,
+        "exported": false
+      },
+      {
+        "name": "State",
+        "kind": "interface",
+        "file": "src/hooks/use-toast.ts",
+        "line": 49,
+        "exported": false
+      },
+      {
+        "name": "StatsCardProps",
+        "kind": "interface",
+        "file": "src/components/StatsCard.tsx",
+        "line": 5,
+        "exported": false
+      },
+      {
+        "name": "StatusBreakdownProps",
+        "kind": "interface",
+        "file": "src/components/DashboardCharts.tsx",
+        "line": 48,
+        "exported": false
+      }
+    ],
+    "functions": [
+      {
+        "name": "AuthProvider",
+        "kind": "function",
+        "file": "src/hooks/useAuth.ts",
+        "line": 17,
+        "exported": true
+      },
+      {
+        "name": "AuthProvider",
+        "kind": "function",
+        "file": "src/hooks/useAuth.tsx",
+        "line": 21,
+        "exported": true
+      },
+      {
+        "name": "CartBadge",
+        "kind": "function",
+        "file": "src/components/CartBadge.tsx",
+        "line": 10,
+        "exported": true
+      },
+      {
+        "name": "cn",
+        "kind": "function",
+        "file": "src/lib/utils.ts",
+        "line": 4,
+        "exported": true
+      },
+      {
+        "name": "createOrder",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 204,
+        "exported": true
+      },
+      {
+        "name": "createOrderItems",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 284,
+        "exported": true
+      },
+      {
+        "name": "createOrderWithItems",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 310,
+        "exported": true
+      },
+      {
+        "name": "createProduct",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 118,
+        "exported": true
+      },
+      {
+        "name": "generateCatalogShareMessage",
+        "kind": "function",
+        "file": "src/lib/utils.ts",
+        "line": 29,
+        "exported": true
+      },
+      {
+        "name": "generateOrderShareMessage",
+        "kind": "function",
+        "file": "src/lib/utils.ts",
+        "line": 41,
+        "exported": true
+      },
+      {
+        "name": "getAllVendors",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 36,
+        "exported": true
+      },
+      {
+        "name": "getOrderById",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 171,
+        "exported": true
+      },
+      {
+        "name": "getOrderItems",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 250,
+        "exported": true
+      },
+      {
+        "name": "getOrders",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 141,
+        "exported": true
+      },
+      {
+        "name": "getProducts",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 57,
+        "exported": true
+      },
+      {
+        "name": "getProductsByCategory",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 90,
+        "exported": true
+      },
+      {
+        "name": "getVendor",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 7,
+        "exported": true
+      },
+      {
+        "name": "isOnline",
+        "kind": "function",
+        "file": "src/hooks/use-service-worker.ts",
+        "line": 51,
+        "exported": true
+      },
+      {
+        "name": "isSupabaseConfigured",
+        "kind": "function",
+        "file": "src/lib/supabase.ts",
+        "line": 18,
+        "exported": true
+      },
+      {
+        "name": "openWhatsApp",
+        "kind": "function",
+        "file": "src/lib/utils.ts",
+        "line": 13,
+        "exported": true
+      },
+      {
+        "name": "OrderTrendChart",
+        "kind": "function",
+        "file": "src/components/DashboardCharts.tsx",
+        "line": 15,
+        "exported": true
+      },
+      {
+        "name": "ProductCard",
+        "kind": "function",
+        "file": "src/components/ProductCard.tsx",
+        "line": 12,
+        "exported": true
+      },
+      {
+        "name": "reducer",
+        "kind": "function",
+        "file": "src/hooks/use-toast.ts",
+        "line": 71,
+        "exported": true
+      },
+      {
+        "name": "StatsCard",
+        "kind": "function",
+        "file": "src/components/StatsCard.tsx",
+        "line": 25,
+        "exported": true
+      },
+      {
+        "name": "StatusBreakdown",
+        "kind": "function",
+        "file": "src/components/DashboardCharts.tsx",
+        "line": 57,
+        "exported": true
+      },
+      {
+        "name": "Toaster",
+        "kind": "function",
+        "file": "src/components/ui/toaster.tsx",
+        "line": 4,
+        "exported": true
+      },
+      {
+        "name": "updateOrderStatus",
+        "kind": "function",
+        "file": "src/lib/api.ts",
+        "line": 225,
+        "exported": true
+      },
+      {
+        "name": "useAuth",
+        "kind": "function",
+        "file": "src/hooks/useAuth.ts",
+        "line": 112,
+        "exported": true
+      },
+      {
+        "name": "useAuth",
+        "kind": "function",
+        "file": "src/hooks/useAuth.tsx",
+        "line": 112,
+        "exported": true
+      },
+      {
+        "name": "useIsMobile",
+        "kind": "function",
+        "file": "src/hooks/use-mobile.tsx",
+        "line": 5,
+        "exported": true
+      },
+      {
+        "name": "useOnlineStatus",
+        "kind": "function",
+        "file": "src/hooks/use-service-worker.ts",
+        "line": 58,
+        "exported": true
+      },
+      {
+        "name": "useServiceWorker",
+        "kind": "function",
+        "file": "src/hooks/use-service-worker.ts",
+        "line": 7,
+        "exported": true
+      },
+      {
+        "name": "addToRemoveQueue",
+        "kind": "function",
+        "file": "src/hooks/use-toast.ts",
+        "line": 55,
+        "exported": false
+      },
+      {
+        "name": "AlertDialogFooter",
+        "kind": "function",
+        "file": "src/components/ui/alert-dialog.tsx",
+        "line": 51,
+        "exported": false
+      },
+      {
+        "name": "AlertDialogHeader",
+        "kind": "function",
+        "file": "src/components/ui/alert-dialog.tsx",
+        "line": 46,
+        "exported": false
+      },
+      {
+        "name": "App",
+        "kind": "function",
+        "file": "src/App.tsx",
+        "line": 19,
+        "exported": false
+      },
+      {
+        "name": "Badge",
+        "kind": "function",
+        "file": "src/components/ui/badge.tsx",
+        "line": 25,
+        "exported": false
+      },
+      {
+        "name": "BreadcrumbEllipsis",
+        "kind": "function",
+        "file": "src/components/ui/breadcrumb.tsx",
+        "line": 69,
+        "exported": false
+      },
+      {
+        "name": "BreadcrumbSeparator",
+        "kind": "function",
+        "file": "src/components/ui/breadcrumb.tsx",
+        "line": 62,
+        "exported": false
+      },
+      {
+        "name": "button",
+        "kind": "function",
+        "file": "src/components/ui/sidebar.tsx",
+        "line": 447,
+        "exported": false
+      },
+      {
+        "name": "Calendar",
+        "kind": "function",
+        "file": "src/components/ui/calendar.tsx",
+        "line": 10,
+        "exported": false
+      },
+      {
+        "name": "ChartStyle",
+        "kind": "function",
+        "file": "src/components/ui/chart.tsx",
+        "line": 61,
+        "exported": false
+      },
+      {
+        "name": "CommandDialog",
+        "kind": "function",
+        "file": "src/components/ui/command.tsx",
+        "line": 26,
+        "exported": false
+      },
+      {
+        "name": "CommandShortcut",
+        "kind": "function",
+        "file": "src/components/ui/command.tsx",
+        "line": 117,
+        "exported": false
+      },
+      {
+        "name": "ContextMenuShortcut",
+        "kind": "function",
+        "file": "src/components/ui/context-menu.tsx",
+        "line": 157,
+        "exported": false
+      },
+      {
+        "name": "DialogFooter",
+        "kind": "function",
+        "file": "src/components/ui/dialog.tsx",
+        "line": 59,
+        "exported": false
+      },
+      {
+        "name": "DialogHeader",
+        "kind": "function",
+        "file": "src/components/ui/dialog.tsx",
+        "line": 54,
+        "exported": false
+      },
+      {
+        "name": "dismiss",
+        "kind": "function",
+        "file": "src/hooks/use-toast.ts",
+        "line": 145,
+        "exported": false
+      },
+      {
+        "name": "dispatch",
+        "kind": "function",
+        "file": "src/hooks/use-toast.ts",
+        "line": 128,
+        "exported": false
+      },
+      {
+        "name": "Drawer",
+        "kind": "function",
+        "file": "src/components/ui/drawer.tsx",
+        "line": 6,
+        "exported": false
+      }
+    ],
+    "types": [
+      {
+        "name": "CalendarProps",
+        "kind": "type",
+        "file": "src/components/ui/calendar.tsx",
+        "line": 8,
+        "exported": true
+      },
+      {
+        "name": "ChartConfig",
+        "kind": "type",
+        "file": "src/components/ui/chart.tsx",
+        "line": 9,
+        "exported": true
+      },
+      {
+        "name": "Action",
+        "kind": "type",
+        "file": "src/hooks/use-toast.ts",
+        "line": 31,
+        "exported": false
+      },
+      {
+        "name": "ActionType",
+        "kind": "type",
+        "file": "src/hooks/use-toast.ts",
+        "line": 29,
+        "exported": false
+      },
+      {
+        "name": "CarouselApi",
+        "kind": "type",
+        "file": "src/components/ui/carousel.tsx",
+        "line": 8,
+        "exported": false
+      },
+      {
+        "name": "CarouselContextProps",
+        "kind": "type",
+        "file": "src/components/ui/carousel.tsx",
+        "line": 20,
+        "exported": false
+      },
+      {
+        "name": "CarouselOptions",
+        "kind": "type",
+        "file": "src/components/ui/carousel.tsx",
+        "line": 10,
+        "exported": false
+      },
+      {
+        "name": "CarouselPlugin",
+        "kind": "type",
+        "file": "src/components/ui/carousel.tsx",
+        "line": 11,
+        "exported": false
+      },
+      {
+        "name": "CarouselProps",
+        "kind": "type",
+        "file": "src/components/ui/carousel.tsx",
+        "line": 13,
+        "exported": false
+      },
+      {
+        "name": "ChartContextProps",
+        "kind": "type",
+        "file": "src/components/ui/chart.tsx",
+        "line": 16,
+        "exported": false
+      },
+      {
+        "name": "FormFieldContextValue",
+        "kind": "type",
+        "file": "src/components/ui/form.tsx",
+        "line": 11,
+        "exported": false
+      },
+      {
+        "name": "FormItemContextValue",
+        "kind": "type",
+        "file": "src/components/ui/form.tsx",
+        "line": 56,
+        "exported": false
+      },
+      {
+        "name": "PaginationLinkProps",
+        "kind": "type",
+        "file": "src/components/ui/pagination.tsx",
+        "line": 29,
+        "exported": false
+      },
+      {
+        "name": "SidebarContext",
+        "kind": "type",
+        "file": "src/components/ui/sidebar.tsx",
+        "line": 22,
+        "exported": false
+      },
+      {
+        "name": "Toast",
+        "kind": "type",
+        "file": "src/hooks/use-toast.ts",
+        "line": 135,
+        "exported": false
+      },
+      {
+        "name": "ToastActionElement",
+        "kind": "type",
+        "file": "src/components/ui/toast.tsx",
+        "line": 99,
+        "exported": false
+      },
+      {
+        "name": "ToastActionElement",
+        "kind": "type",
+        "file": "src/components/ui/toast.tsx",
+        "line": 103,
+        "exported": false
+      },
+      {
+        "name": "ToasterProps",
+        "kind": "type",
+        "file": "src/components/ui/sonner.tsx",
+        "line": 4,
+        "exported": false
+      },
+      {
+        "name": "ToasterToast",
+        "kind": "type",
+        "file": "src/hooks/use-toast.ts",
+        "line": 8,
+        "exported": false
+      },
+      {
+        "name": "ToastProps",
+        "kind": "type",
+        "file": "src/components/ui/toast.tsx",
+        "line": 97,
+        "exported": false
+      },
+      {
+        "name": "ToastProps",
+        "kind": "type",
+        "file": "src/components/ui/toast.tsx",
+        "line": 102,
+        "exported": false
+      },
+      {
+        "name": "UseCarouselParameters",
+        "kind": "type",
+        "file": "src/components/ui/carousel.tsx",
+        "line": 9,
+        "exported": false
+      }
+    ],
+    "enums": []
+  },
+  "publicAPI": [
+    {
+      "name": "AuthProvider",
+      "kind": "function",
+      "file": "src/hooks/useAuth.ts",
+      "line": 17,
+      "exported": true
+    },
+    {
+      "name": "AuthProvider",
+      "kind": "function",
+      "file": "src/hooks/useAuth.tsx",
+      "line": 21,
+      "exported": true
+    },
+    {
+      "name": "AuthUser",
+      "kind": "interface",
+      "file": "src/lib/types.ts",
+      "line": 54,
+      "exported": true
+    },
+    {
+      "name": "BadgeProps",
+      "kind": "interface",
+      "file": "src/components/ui/badge.tsx",
+      "line": 23,
+      "exported": true
+    },
+    {
+      "name": "ButtonProps",
+      "kind": "interface",
+      "file": "src/components/ui/button.tsx",
+      "line": 33,
+      "exported": true
+    },
+    {
+      "name": "CalendarProps",
+      "kind": "type",
+      "file": "src/components/ui/calendar.tsx",
+      "line": 8,
+      "exported": true
+    },
+    {
+      "name": "CartBadge",
+      "kind": "function",
+      "file": "src/components/CartBadge.tsx",
+      "line": 10,
+      "exported": true
+    },
+    {
+      "name": "CartItem",
+      "kind": "interface",
+      "file": "src/lib/types.ts",
+      "line": 63,
+      "exported": true
+    },
+    {
+      "name": "ChartConfig",
+      "kind": "type",
+      "file": "src/components/ui/chart.tsx",
+      "line": 9,
+      "exported": true
+    },
+    {
+      "name": "cn",
+      "kind": "function",
+      "file": "src/lib/utils.ts",
+      "line": 4,
+      "exported": true
+    },
+    {
+      "name": "createOrder",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 204,
+      "exported": true
+    },
+    {
+      "name": "createOrderItems",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 284,
+      "exported": true
+    },
+    {
+      "name": "createOrderWithItems",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 310,
+      "exported": true
+    },
+    {
+      "name": "createProduct",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 118,
+      "exported": true
+    },
+    {
+      "name": "generateCatalogShareMessage",
+      "kind": "function",
+      "file": "src/lib/utils.ts",
+      "line": 29,
+      "exported": true
+    },
+    {
+      "name": "generateOrderShareMessage",
+      "kind": "function",
+      "file": "src/lib/utils.ts",
+      "line": 41,
+      "exported": true
+    },
+    {
+      "name": "getAllVendors",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 36,
+      "exported": true
+    },
+    {
+      "name": "getOrderById",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 171,
+      "exported": true
+    },
+    {
+      "name": "getOrderItems",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 250,
+      "exported": true
+    },
+    {
+      "name": "getOrders",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 141,
+      "exported": true
+    },
+    {
+      "name": "getProducts",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 57,
+      "exported": true
+    },
+    {
+      "name": "getProductsByCategory",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 90,
+      "exported": true
+    },
+    {
+      "name": "getVendor",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 7,
+      "exported": true
+    },
+    {
+      "name": "isOnline",
+      "kind": "function",
+      "file": "src/hooks/use-service-worker.ts",
+      "line": 51,
+      "exported": true
+    },
+    {
+      "name": "isSupabaseConfigured",
+      "kind": "function",
+      "file": "src/lib/supabase.ts",
+      "line": 18,
+      "exported": true
+    },
+    {
+      "name": "openWhatsApp",
+      "kind": "function",
+      "file": "src/lib/utils.ts",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "name": "Order",
+      "kind": "interface",
+      "file": "src/data/mockData.ts",
+      "line": 17,
+      "exported": true
+    },
+    {
+      "name": "Order",
+      "kind": "interface",
+      "file": "src/lib/types.ts",
+      "line": 27,
+      "exported": true
+    },
+    {
+      "name": "OrderItem",
+      "kind": "interface",
+      "file": "src/data/mockData.ts",
+      "line": 10,
+      "exported": true
+    },
+    {
+      "name": "OrderItem",
+      "kind": "interface",
+      "file": "src/lib/types.ts",
+      "line": 41,
+      "exported": true
+    },
+    {
+      "name": "OrderTrendChart",
+      "kind": "function",
+      "file": "src/components/DashboardCharts.tsx",
+      "line": 15,
+      "exported": true
+    },
+    {
+      "name": "Product",
+      "kind": "interface",
+      "file": "src/data/mockData.ts",
+      "line": 1,
+      "exported": true
+    },
+    {
+      "name": "Product",
+      "kind": "interface",
+      "file": "src/lib/types.ts",
+      "line": 13,
+      "exported": true
+    },
+    {
+      "name": "ProductCard",
+      "kind": "function",
+      "file": "src/components/ProductCard.tsx",
+      "line": 12,
+      "exported": true
+    },
+    {
+      "name": "reducer",
+      "kind": "function",
+      "file": "src/hooks/use-toast.ts",
+      "line": 71,
+      "exported": true
+    },
+    {
+      "name": "StatsCard",
+      "kind": "function",
+      "file": "src/components/StatsCard.tsx",
+      "line": 25,
+      "exported": true
+    },
+    {
+      "name": "StatusBreakdown",
+      "kind": "function",
+      "file": "src/components/DashboardCharts.tsx",
+      "line": 57,
+      "exported": true
+    },
+    {
+      "name": "TextareaProps",
+      "kind": "interface",
+      "file": "src/components/ui/textarea.tsx",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "name": "Toaster",
+      "kind": "function",
+      "file": "src/components/ui/toaster.tsx",
+      "line": 4,
+      "exported": true
+    },
+    {
+      "name": "updateOrderStatus",
+      "kind": "function",
+      "file": "src/lib/api.ts",
+      "line": 225,
+      "exported": true
+    },
+    {
+      "name": "useAuth",
+      "kind": "function",
+      "file": "src/hooks/useAuth.ts",
+      "line": 112,
+      "exported": true
+    },
+    {
+      "name": "useAuth",
+      "kind": "function",
+      "file": "src/hooks/useAuth.tsx",
+      "line": 112,
+      "exported": true
+    },
+    {
+      "name": "useIsMobile",
+      "kind": "function",
+      "file": "src/hooks/use-mobile.tsx",
+      "line": 5,
+      "exported": true
+    },
+    {
+      "name": "useOnlineStatus",
+      "kind": "function",
+      "file": "src/hooks/use-service-worker.ts",
+      "line": 58,
+      "exported": true
+    },
+    {
+      "name": "useServiceWorker",
+      "kind": "function",
+      "file": "src/hooks/use-service-worker.ts",
+      "line": 7,
+      "exported": true
+    },
+    {
+      "name": "Vendor",
+      "kind": "interface",
+      "file": "src/lib/types.ts",
+      "line": 2,
+      "exported": true
+    }
+  ],
+  "dependencies": {
+    "mostImported": [
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/lib/supabase.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/lib/types.ts",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/App.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/VendorHome.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/Catalog.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/Cart.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/Confirmation.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/Dashboard.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/OrderDetail.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/Instructions.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/pages/NotFound.tsx",
+        "importedBy": 1
+      },
+      {
+        "file": "/Users/danilo/WorkSpace /hortifast/src/hooks/use-service-worker.ts",
+        "importedBy": 1
+      }
+    ]
+  },
+  "stats": {
+    "totalSymbols": 154,
+    "exportedSymbols": 46,
+    "analysisTimeMs": 122
+  }
+}
