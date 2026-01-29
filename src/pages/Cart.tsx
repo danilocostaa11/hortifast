@@ -7,8 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { products } from '@/data/mockData';
 import { toast } from 'sonner';
+import { createOrderWithItems } from '@/lib/api';
 
 export default function Cart() {
   const navigate = useNavigate();
@@ -22,14 +22,13 @@ export default function Cart() {
 
   const selectedItems = Object.entries(quantities)
     .filter(([_, qty]) => qty > 0)
-    .map(([productId, qty]) => {
-      const product = products.find(p => p.id === productId);
-      return { product, quantity: qty };
-    })
-    .filter(item => item.product);
+    .map(([productId, qty]) => ({
+      productId,
+      quantity: qty
+    }));
 
   const totalPrice = selectedItems.reduce((sum, item) => {
-    return sum + ((item.product?.price || 0) * item.quantity);
+    return sum + item.quantity;
   }, 0);
 
   const validateForm = () => {
@@ -61,11 +60,18 @@ export default function Cart() {
 
     setIsSubmitting(true);
     
-    // Simulate API call delay
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      const orderId = `ORD-${Date.now().toString().slice(-6)}`;
+      // Create order via API
+      const orderId = await createOrderWithItems({
+        customer_name: customerName.trim(),
+        observations,
+        items: selectedItems
+      });
+
+      if (!orderId) {
+        throw new Error('Erro ao criar pedido');
+      }
+
       toast.success('Pedido enviado com sucesso!');
       
       navigate('/confirmation', {
@@ -79,6 +85,7 @@ export default function Cart() {
       });
     } catch (error) {
       toast.error('Erro ao enviar pedido. Tente novamente.');
+      console.error('Submit error:', error);
     } finally {
       setIsSubmitting(false);
     }

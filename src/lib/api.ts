@@ -299,3 +299,56 @@ export async function createOrderItems(items: Omit<OrderItem, 'id' | 'created_at
     return false;
   }
 }
+
+// ============== HELPER FUNCTIONS ==============
+
+/**
+ * Create order with items (convenience function)
+ * @param orderData Order data with items array
+ * @returns Order ID if successful
+ */
+export async function createOrderWithItems(orderData: {
+  customer_name: string;
+  observations?: string;
+  items: Array<{ productId: string; quantity: number }>;
+  vendor_id?: string;
+}): Promise<string | null> {
+  try {
+    // Generate order ID
+    const orderId = `ORD-${Date.now().toString().slice(-6)}`;
+
+    // Create order (backend will auto-generate actual ID)
+    const newOrder = await createOrder({
+      vendor_id: orderData.vendor_id || 'vendor-demo',
+      customer_name: orderData.customer_name,
+      observations: orderData.observations,
+      status: 'new' as const,
+      total_price: 0
+    });
+
+    if (!newOrder) {
+      throw new Error('Failed to create order');
+    }
+
+    // Create order items using the actual order ID
+    const actualOrderId = newOrder.id;
+    const orderItems = orderData.items.map((item) => ({
+      order_id: actualOrderId,
+      product_id: item.productId,
+      product_name: `Product ${item.productId}`,
+      quantity: item.quantity,
+      unit: 'unit',
+      unit_price: 0,
+      subtotal: 0
+    }));
+
+    if (orderItems.length > 0) {
+      await createOrderItems(orderItems);
+    }
+
+    return actualOrderId;
+  } catch (error) {
+    console.error('Error creating order with items:', error);
+    return null;
+  }
+}

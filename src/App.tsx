@@ -12,10 +12,15 @@ import Dashboard from "./pages/Dashboard";
 import OrderDetail from "./pages/OrderDetail";
 import Instructions from "./pages/Instructions";
 import NotFound from "./pages/NotFound";
+import { useServiceWorker } from "./hooks/use-service-worker";
 
 const queryClient = new QueryClient();
 
-const App = () => (
+const App = () => {
+  // Register Service Worker for PWA
+  useServiceWorker();
+
+  return (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <TooltipProvider>
@@ -37,6 +42,7 @@ const App = () => (
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;
