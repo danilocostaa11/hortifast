@@ -1,15 +1,15 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Leaf, Search, X, MessageCircle, Loader } from 'lucide-react';
+import { Search, X, MessageCircle, Loader, Filter } from 'lucide-react';
 import { ProductCard } from '@/components/ProductCard';
 import { CartBadge } from '@/components/CartBadge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
 import { openWhatsApp, generateCatalogShareMessage } from '@/lib/utils';
 import { getProducts, getVendor } from '@/lib/api';
 import { Product, Vendor } from '@/lib/types';
+import { Layout } from '@/components/layout/Layout';
 
 export default function Catalog() {
   const { vendorId } = useParams();
@@ -102,253 +102,215 @@ export default function Catalog() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-24">
-      {/* Header */}
-      <header className="sticky top-0 z-10 bg-card border-b border-border shadow-sm">
-        <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="bg-primary text-primary-foreground p-2 rounded-lg">
-              <Leaf className="h-5 w-5" />
-            </div>
-            <div>
-              <h1 className="font-semibold text-lg text-foreground">
-                {vendor?.name || 'HortiFruti Express'}
-              </h1>
-              <p className="text-xs text-muted-foreground">Produtos frescos</p>
-            </div>
+    <Layout>
+      <div className="pb-24">
+        {/* Vendor Header Info */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+          <div>
+            <h1 className="font-serif text-3xl font-bold text-foreground">
+              {vendor?.name || 'Catálogo de Produtos'}
+            </h1>
+            <p className="text-muted-foreground mt-1">
+              Selecione os produtos fresquinhos para sua casa.
+            </p>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <Button
               onClick={handleShareWhatsApp}
-              variant="ghost"
-              size="icon"
-              className="text-green-600 hover:text-green-700 hover:bg-green-100"
-              title="Compartilhar via WhatsApp"
-              disabled={loading}
+              variant="outline"
+              size="sm"
+              className="gap-2"
             >
-              <MessageCircle className="h-5 w-5" />
+              <MessageCircle className="h-4 w-4" />
+              Compartilhar
             </Button>
             <CartBadge itemCount={totalItems} onClick={handleViewCart} />
           </div>
         </div>
-      </header>
 
-      {/* Search and Filter */}
-      <div className="sticky top-[72px] z-9 bg-card border-b border-border">
-        <div className="max-w-2xl mx-auto px-4 py-4 space-y-4">
-          {/* Search Input */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Buscar produtos..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 pr-10"
-            />
-            {searchQuery && (
+        {/* Search and Filter Section */}
+        <div className="sticky top-20 z-30 bg-background/80 backdrop-blur-md py-4 -mx-4 px-4 mb-6 border-b">
+          <div className="max-w-7xl mx-auto space-y-4">
+            <div className="flex gap-4">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="text"
+                  placeholder="Buscar produtos..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10 pr-10 bg-card"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                  >
+                    <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+                  </button>
+                )}
+              </div>
+              <Button variant="outline" size="icon" className="shrink-0">
+                <Filter className="h-4 w-4" />
+              </Button>
+            </div>
+
+            {/* Category Filters */}
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
               <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                onClick={() => toggleCategory('vegetables')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategories.has('vegetables')
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-card text-muted-foreground hover:bg-muted border'
+                  }`}
               >
-                <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
+                <span>🥬</span> Verduras
               </button>
-            )}
+              <button
+                onClick={() => toggleCategory('fruits')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategories.has('fruits')
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-card text-muted-foreground hover:bg-muted border'
+                  }`}
+              >
+                <span>🍎</span> Frutas
+              </button>
+              <button
+                onClick={() => toggleCategory('herbs')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategories.has('herbs')
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-card text-muted-foreground hover:bg-muted border'
+                  }`}
+              >
+                <span>🌿</span> Ervas
+              </button>
+            </div>
           </div>
+        </div>
 
-          {/* Category Filters */}
-          <div className="flex gap-2 overflow-x-auto pb-2">
-            <button
-              onClick={() => toggleCategory('vegetables')}
-              className={`whitespace-nowrap px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                activeCategories.has('vegetables')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/70'
-              }`}
-            >
-              🥬 Verduras
-            </button>
-            <button
-              onClick={() => toggleCategory('fruits')}
-              className={`whitespace-nowrap px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                activeCategories.has('fruits')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/70'
-              }`}
-            >
-              🍎 Frutas
-            </button>
-            <button
-              onClick={() => toggleCategory('herbs')}
-              className={`whitespace-nowrap px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                activeCategories.has('herbs')
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/70'
-              }`}
-            >
-              🌿 Ervas
-            </button>
-          </div>
+        {/* Product List */}
+        <div>
+          {/* Loading State */}
+          {loading && (
+            <div className="text-center py-20">
+              <Loader className="h-8 w-8 text-primary animate-spin mx-auto mb-4" />
+              <p className="text-muted-foreground">Carregando produtos...</p>
+            </div>
+          )}
 
-          {/* Results Count */}
-          {searchQuery && (
-            <p className="text-sm text-muted-foreground">
-              {filteredProducts.length} produto{filteredProducts.length !== 1 ? 's' : ''} encontrado{filteredProducts.length !== 1 ? 's' : ''}
-            </p>
+          {/* Error State */}
+          {error && !loading && (
+            <div className="text-center py-20">
+              <p className="text-red-500 mb-4">{error}</p>
+              <Button onClick={() => window.location.reload()}>Tentar Novamente</Button>
+            </div>
+          )}
+
+          {/* Content */}
+          {!loading && !error && (
+            <div className="space-y-12">
+              {filteredProducts.length === 0 ? (
+                <div className="text-center py-20">
+                  <p className="text-muted-foreground text-lg">
+                    Nenhum produto encontrado.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  {/* Verduras */}
+                  {groupedProducts.vegetables.length > 0 && (
+                    <motion.section
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-foreground">
+                        <span className="text-2xl">🥬</span> Verduras e Legumes
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {groupedProducts.vegetables.map((product) => (
+                          <ProductCard
+                            key={product.id}
+                            product={product}
+                            quantity={quantities[product.id] || 0}
+                            onQuantityChange={handleQuantityChange}
+                          />
+                        ))}
+                      </div>
+                    </motion.section>
+                  )}
+
+                  {/* Frutas */}
+                  {groupedProducts.fruits.length > 0 && (
+                    <motion.section
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                      <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-foreground">
+                        <span className="text-2xl">🍎</span> Frutas Frescas
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {groupedProducts.fruits.map((product) => (
+                          <ProductCard
+                            key={product.id}
+                            product={product}
+                            quantity={quantities[product.id] || 0}
+                            onQuantityChange={handleQuantityChange}
+                          />
+                        ))}
+                      </div>
+                    </motion.section>
+                  )}
+
+                  {/* Ervas */}
+                  {groupedProducts.herbs.length > 0 && (
+                    <motion.section
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
+                      <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-foreground">
+                        <span className="text-2xl">🌿</span> Ervas e Temperos
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        {groupedProducts.herbs.map((product) => (
+                          <ProductCard
+                            key={product.id}
+                            product={product}
+                            quantity={quantities[product.id] || 0}
+                            onQuantityChange={handleQuantityChange}
+                          />
+                        ))}
+                      </div>
+                    </motion.section>
+                  )}
+                </>
+              )}
+            </div>
           )}
         </div>
-      </div>
 
-      {/* Product List */}
-      <main className="max-w-2xl mx-auto px-4 py-6">
-        {/* Loading State */}
-        {loading && (
+        {/* Floating Cart Button (Mobile Only/Always visible) */}
+        {totalItems > 0 && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-sm px-4"
           >
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-              className="inline-block"
-            >
-              <Loader className="h-8 w-8 text-primary" />
-            </motion.div>
-            <p className="text-muted-foreground mt-4">Carregando produtos...</p>
-          </motion.div>
-        )}
-
-        {/* Error State */}
-        {error && !loading && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
-          >
-            <p className="text-red-600 text-lg mb-4">{error}</p>
-            <Button onClick={() => navigate('/')}>Voltar ao Início</Button>
-          </motion.div>
-        )}
-
-        {/* Content State */}
-        {!loading && !error && filteredProducts.length === 0 ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-12"
-          >
-            <p className="text-muted-foreground text-lg">
-              {searchQuery
-                ? 'Nenhum produto encontrado com esse nome'
-                : 'Selecione uma categoria para ver os produtos'}
-            </p>
-          </motion.div>
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-          >
-            {/* Verduras e Legumes */}
-            {groupedProducts.vegetables.length > 0 && (
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <span className="text-2xl">🥬</span>
-                  Verduras e Legumes
-                </h3>
-                <div className="space-y-3">
-                  {groupedProducts.vegetables.map((product, index) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.03, duration: 0.3 }}
-                    >
-                      <ProductCard
-                        product={product}
-                        quantity={quantities[product.id] || 0}
-                        onQuantityChange={handleQuantityChange}
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Frutas */}
-            {groupedProducts.fruits.length > 0 && (
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <span className="text-2xl">🍎</span>
-                  Frutas
-                </h3>
-                <div className="space-y-3">
-                  {groupedProducts.fruits.map((product, index) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.03, duration: 0.3 }}
-                    >
-                      <ProductCard
-                        product={product}
-                        quantity={quantities[product.id] || 0}
-                        onQuantityChange={handleQuantityChange}
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Ervas e Temperos */}
-            {groupedProducts.herbs.length > 0 && (
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
-                  <span className="text-2xl">🌿</span>
-                  Ervas e Temperos
-                </h3>
-                <div className="space-y-3">
-                  {groupedProducts.herbs.map((product, index) => (
-                    <motion.div
-                      key={product.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.03, duration: 0.3 }}
-                    >
-                      <ProductCard
-                        product={product}
-                        quantity={quantities[product.id] || 0}
-                        onQuantityChange={handleQuantityChange}
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </motion.div>
-        )}
-      </main>
-
-      {/* Bottom Action Bar */}
-      {totalItems > 0 && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          className="fixed bottom-0 left-0 right-0 bg-card border-t border-border shadow-lg"
-        >
-          <div className="max-w-2xl mx-auto px-4 py-4">
             <Button
               onClick={handleViewCart}
               size="lg"
-              className="w-full h-14 text-base font-semibold"
+              className="w-full h-14 rounded-full shadow-xl shadow-primary/20 text-base font-semibold flex items-center justify-between px-6"
             >
-              Ver Pedido ({totalItems} {totalItems === 1 ? 'item' : 'itens'})
+              <span>Ver Pedido</span>
+              <span className="bg-primary-foreground/20 px-3 py-1 rounded-full text-sm">
+                {totalItems} {totalItems === 1 ? 'item' : 'itens'}
+              </span>
             </Button>
-          </div>
-        </motion.div>
-      )}
-    </div>
+          </motion.div>
+        )}
+      </div>
+    </Layout>
   );
 }
