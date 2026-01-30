@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { toast } from 'sonner';
 import { getOrders } from '@/lib/api';
 import { Order } from '@/lib/types';
-import { useAuth } from '@/context/AuthContext';
+import { useAuth } from '@/hooks/useAuth';
 import { StatsCard } from '@/components/StatsCard';
 import { OrderTrendChart, StatusBreakdown } from '@/components/DashboardCharts';
 
