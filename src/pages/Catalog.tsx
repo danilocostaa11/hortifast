@@ -145,6 +145,7 @@ export default function Catalog() {
                   <button
                     onClick={() => setSearchQuery('')}
                     className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    aria-label="Limpar busca"
                   >
                     <X className="h-4 w-4 text-muted-foreground hover:text-foreground" />
                   </button>
@@ -160,8 +161,8 @@ export default function Catalog() {
               <button
                 onClick={() => toggleCategory('vegetables')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategories.has('vegetables')
-                    ? 'bg-primary text-primary-foreground shadow-md'
-                    : 'bg-card text-muted-foreground hover:bg-muted border'
+                  ? 'bg-primary text-primary-foreground shadow-md'
+                  : 'bg-card text-muted-foreground hover:bg-muted border'
                   }`}
               >
                 <span>🥬</span> Verduras
@@ -169,8 +170,8 @@ export default function Catalog() {
               <button
                 onClick={() => toggleCategory('fruits')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategories.has('fruits')
-                    ? 'bg-primary text-primary-foreground shadow-md'
-                    : 'bg-card text-muted-foreground hover:bg-muted border'
+                  ? 'bg-primary text-primary-foreground shadow-md'
+                  : 'bg-card text-muted-foreground hover:bg-muted border'
                   }`}
               >
                 <span>🍎</span> Frutas
@@ -178,8 +179,8 @@ export default function Catalog() {
               <button
                 onClick={() => toggleCategory('herbs')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all ${activeCategories.has('herbs')
-                    ? 'bg-primary text-primary-foreground shadow-md'
-                    : 'bg-card text-muted-foreground hover:bg-muted border'
+                  ? 'bg-primary text-primary-foreground shadow-md'
+                  : 'bg-card text-muted-foreground hover:bg-muted border'
                   }`}
               >
                 <span>🌿</span> Ervas

@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { mockOrders } from '@/data/mockData';
 import { toast } from 'sonner';
 import { openWhatsApp, generateOrderShareMessage } from '@/lib/utils';
+import { Layout } from '@/components/layout/Layout';
 
 const statusLabels = {
   new: { label: 'Novo', variant: 'default' as const },
@@ -20,17 +21,19 @@ export default function OrderDetail() {
   const navigate = useNavigate();
   const { orderId } = useParams();
   const order = mockOrders.find(o => o.id === orderId);
-  
+
   const [status, setStatus] = useState(order?.status || 'new');
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Pedido não encontrado</h1>
-          <Button onClick={() => navigate('/dashboard')}>Voltar ao Painel</Button>
+      <Layout>
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-foreground mb-2">Pedido não encontrado</h1>
+            <Button onClick={() => navigate('/dashboard')}>Voltar ao Painel</Button>
+          </div>
         </div>
-      </div>
+      </Layout>
     );
   }
 
@@ -62,7 +65,7 @@ export default function OrderDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-8">
+    <Layout>
       {/* Header */}
       <header className="bg-card border-b border-border sticky top-0 z-10 print:static">
         <div className="max-w-4xl mx-auto px-4 py-4">
@@ -81,7 +84,7 @@ export default function OrderDetail() {
                 <p className="text-sm text-muted-foreground font-mono">{order.id}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-2 print:hidden">
               <Button onClick={handleShareWhatsApp} variant="outline" className="gap-2" title="Compartilhar via WhatsApp">
                 <MessageCircle className="h-4 w-4 text-green-600" />
@@ -205,6 +208,6 @@ export default function OrderDetail() {
           </Card>
         </motion.div>
       </main>
-    </div>
+    </Layout>
   );
 }
