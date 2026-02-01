@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Minus, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Product } from '@/data/mockData';
+import { Product } from '@/lib/types';
 
 interface ProductCardProps {
   product: Product;
@@ -27,8 +27,22 @@ export const ProductCard = ({ product, quantity, onQuantityChange }: ProductCard
       className="flex items-center gap-3 p-4 bg-card rounded-lg border border-border hover:shadow-md transition-shadow"
     >
       {/* Product Image/Emoji */}
-      <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center text-4xl bg-accent rounded-lg">
-        {product.image}
+      <div className="flex-shrink-0 w-16 h-16 flex items-center justify-center bg-accent rounded-lg overflow-hidden">
+        {product.image ? (
+          (product.image.length > 4 || product.image.startsWith('/')) ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span className="text-4xl">{product.image}</span>
+          )
+        ) : (
+          <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
+            No Image
+          </div>
+        )}
       </div>
 
       {/* Product Info */}
@@ -64,7 +78,7 @@ export const ProductCard = ({ product, quantity, onQuantityChange }: ProductCard
             >
               <Minus className="h-4 w-4" />
             </Button>
-            
+
             <motion.span
               key={quantity}
               initial={{ scale: 1 }}
@@ -76,7 +90,7 @@ export const ProductCard = ({ product, quantity, onQuantityChange }: ProductCard
             >
               {quantity}
             </motion.span>
-            
+
             <Button
               onClick={handleIncrement}
               variant="ghost"

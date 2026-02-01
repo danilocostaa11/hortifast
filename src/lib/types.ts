@@ -18,7 +18,8 @@ export interface Product {
   unit: string;
   price: number;
   description?: string;
-  image_emoji?: string;
+  image?: string;
+  image_url?: string;
   created_at: string;
   updated_at: string;
 }

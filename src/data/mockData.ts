@@ -30,7 +30,7 @@ export const products: Product[] = [
     name: 'Tomate',
     unit: 'kg',
     price: 8.90,
-    image: '🍅',
+    image: '/products/tomate.png',
     category: 'vegetables'
   },
   {
@@ -38,7 +38,7 @@ export const products: Product[] = [
     name: 'Alface',
     unit: 'unidade',
     price: 3.50,
-    image: '🥬',
+    image: '/products/alface.png',
     category: 'vegetables'
   },
   {
@@ -46,7 +46,7 @@ export const products: Product[] = [
     name: 'Cenoura',
     unit: 'kg',
     price: 5.90,
-    image: '🥕',
+    image: '/products/cenoura.png',
     category: 'vegetables'
   },
   {
@@ -54,7 +54,7 @@ export const products: Product[] = [
     name: 'Batata',
     unit: 'kg',
     price: 4.50,
-    image: '🥔',
+    image: '/products/batata.png',
     category: 'vegetables'
   },
   {
@@ -62,7 +62,7 @@ export const products: Product[] = [
     name: 'Cebola',
     unit: 'kg',
     price: 6.90,
-    image: '🧅',
+    image: '/products/cebola.png',
     category: 'vegetables'
   },
   {
@@ -70,7 +70,7 @@ export const products: Product[] = [
     name: 'Brócolis',
     unit: 'unidade',
     price: 7.90,
-    image: '🥦',
+    image: '/products/brocolis.png',
     category: 'vegetables'
   },
   {
@@ -193,14 +193,14 @@ export const products: Product[] = [
     image: '🫛',
     category: 'vegetables'
   },
-  
+
   // Frutas
   {
     id: '7',
     name: 'Banana',
     unit: 'kg',
     price: 5.90,
-    image: '🍌',
+    image: '/products/banana.png',
     category: 'fruits'
   },
   {
@@ -208,7 +208,7 @@ export const products: Product[] = [
     name: 'Maçã',
     unit: 'kg',
     price: 9.90,
-    image: '🍎',
+    image: '/products/maca.png',
     category: 'fruits'
   },
   {
@@ -216,7 +216,7 @@ export const products: Product[] = [
     name: 'Laranja',
     unit: 'kg',
     price: 6.50,
-    image: '🍊',
+    image: '/products/laranja.png',
     category: 'fruits'
   },
   {
@@ -224,7 +224,7 @@ export const products: Product[] = [
     name: 'Morango',
     unit: 'caixa',
     price: 12.90,
-    image: '🍓',
+    image: '/products/morango.png',
     category: 'fruits'
   },
   {
@@ -232,7 +232,7 @@ export const products: Product[] = [
     name: 'Abacate',
     unit: 'kg',
     price: 11.90,
-    image: '🥑',
+    image: '/products/abacate.png',
     category: 'fruits'
   },
   {
@@ -240,7 +240,7 @@ export const products: Product[] = [
     name: 'Limão',
     unit: 'kg',
     price: 4.90,
-    image: '🍋',
+    image: '/products/limao.png',
     category: 'fruits'
   },
   {
@@ -363,7 +363,7 @@ export const products: Product[] = [
     image: '🍇',
     category: 'fruits'
   },
-  
+
   // Ervas e Temperos
   {
     id: '13',

@@ -64,7 +64,7 @@ export async function getProducts(vendorId?: string): Promise<Product[]> {
       category: p.category,
       unit: p.unit,
       price: p.price || 0,
-      image_emoji: p.image,
+      image: p.image,
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString()
     }));
